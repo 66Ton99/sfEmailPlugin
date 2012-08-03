@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<package xmlns="http://pear.php.net/dtd/package-2.0"
+	xmlns:tasks="http://pear.php.net/dtd/tasks-1.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	packagerversion="1.5.1" version="2.0"
+	xsi:schemaLocation="http://pear.php.net/dtd/tasks-1.0 http://pear.php.net/dtd/tasks-1.0.xsd http://pear.php.net/dtd/package-2.0 http://pear.php.net/dtd/package-2.0.xsd">
+	<name>sfEmailPlugin</name>
+	<channel>pear.symfony-project.com</channel>
+	<summary>sfEmail plugin</summary>
+	<description>
+		The `sfEmailPlugin` is a symfony plugin that allows to debug emails deliverability in development mode.
+		All the emails are stored as the plain text files into /cache/mail/ folder (by default).
+		And you will be able to browse/view them via sfEmail module.
+		This could be really helpfull for the cases when you are testing confirmation link integrated in emails,
+		user registration information and don't have a way to use real deliverability.
+		And it could be use with Selenium or other automate web app testing.
+	</description>
+	<lead>
+		<name>Voznyak Nazar</name>
+		<user>Nazar.Voznyak</user>
+		<email>voznyaknazar@gmail.com</email>
+		<active>yes</active>
+	</lead>
+	<developer>
+		<name>Ton Sharp</name>
+		<user>66Ton99</user>
+		<email>66Ton99@gmail.com</email>
+		<active>yes</active>
+	</developer>
+	<date>2011-02-15</date>
+	<time>18:00:00</time>
+	<version>
+		<release>1.1.3</release>
+		<api>1.1.0</api>
+	</version>
+	<stability>
+		<release>stable</release>
+		<api>stable</api>
+	</stability>
+	<license uri="http://www.symfony-project.com/license">MIT license</license>
+	<notes>-</notes>
+	<contents>
+		<dir name="/">
+			<file name="config/config.php" role="data" />
+			<file name="config/emailPlugin.yml" role="data" />
+			<file name="config/sfEmailPluginConfiguration.class.php" role="data" />
+			<file name="lib/FileTransport.php" role="data" />
+			<file name="lib/FileConnection.php" role="data" />
+      <file name="lib/FileSend.php" role="data" />
+      <file name="lib/FileTransport.php" role="data" />
+      <file name="lib/Functions.php" role="data" />
+      <file name="lib/sfEmail.class.php" role="data" />
+			<file name="modules/sfEmail/actions/actions.class.php" role="data" />
+			<file name="modules/sfEmail/templates/indexSuccess.php" role="data" />
+			<file name="modules/sfEmail/templates/showFileSuccess.php" role="data" />
+			<file name="modules/sfEmail/lib/helper/sfEmailHelper.php" role="data" />
+			<file name="LICENSE" role="data" />
+			<file name="README" role="data" />
+		</dir>
+	</contents>
+	<dependencies>
+		<required>
+			<php>
+				<min>5.2.4</min>
+			</php>
+			<pearinstaller>
+				<min>1.4.1</min>
+			</pearinstaller>
+			<package>
+				<name>symfony</name>
+				<channel>pear.symfony-project.com</channel>
+				<min>1.0.0</min>
+				<max>1.4.99</max>
+			</package>
+		</required>
+	</dependencies>
+	<phprelease />
+	<changelog>
+    <release>
+			<version>
+				<release>1.1.3</release>
+				<api>1.1.0</api>
+			</version>
+			<stability>
+				<release>stable</release>
+				<api>1.1.0</api>
+			</stability>
+			<license uri="http://www.symfony-project.com/license">MIT license</license>
+			<date>2011-12-20</date>
+			<license>MIT</license>
+			<notes>
+				* Added missed files
+			</notes>
+		</release>
+		<release>
+			<version>
+				<release>1.1.2</release>
+				<api>1.1.0</api>
+			</version>
+			<stability>
+				<release>stable</release>
+				<api>1.1.0</api>
+			</stability>
+			<license uri="http://www.symfony-project.com/license">MIT license</license>
+			<date>2011-02-15</date>
+			<license>MIT</license>
+			<notes>
+				* Added support for Symfony 1.1 - 1.4
+				* Fixed read *.eml files
+			</notes>
+		</release>
+	</changelog>
+</package>

@@ -1,0 +1,86 @@
+# sfEmail plugin
+
+The `sfEmailPlugin` is a symfony plugin that allows to debug emails deliverability in development or test mode.
+All the emails are stored as the plain text files into /cache/mail/ folder (by default).
+And you will be able to browse/view them via sfEmail module.
+This could be really helpfull for the cases when you are testing confirmation link integrated in emails,
+user registration information and don't have a way to use real deliverability.
+And it could be use with Selenium or other automate web app testing.
+
+## Installation
+
+  * Install the plugin
+  
+<pre><code>
+    Symfony 1.0
+    symfony plugin-install http://plugins.symfony-project.com/sfEmailPlugin
+    
+    Symfony 1.x
+    symfony plugin:install sfEmailPlugin
+    
+</code></pre>
+  
+  * Enable module in your `settings.yml` (optional)
+
+<pre><code>
+all:
+  .settings:
+    enabled_modules:      [ default, sfEmail ]
+    
+</code></pre>
+
+  * Make sure plugin will be able to create a folder mail in log directory or create it by yourself with 777 permissions.
+
+  * Clear you cache
+  
+<pre><code>
+symfony cc
+
+</code></pre>
+  
+  
+## Using Symfony 1.0 - 1.3 (with compat 1.0)
+
+  * In order to use this plugin just use sfEmail as a class for sending emails instead of sfMail
+
+<pre><code>
+$mail = new sfEmail()
+
+</code></pre>
+
+
+## Using Symfony 1.1 - 1.2
+
+  In order to use this plugin just use sfEmail_Connection_File
+
+<pre><code>
+$mailer = new Swift(new sfEmail_Connection_File());
+
+</code></pre>
+
+
+## Using Symfony 1.3 - 1.4
+
+  In order to use this plugin just chnage mailer transport to sfEmail_FileTransport
+
+<pre><code>
+mailer:
+  class: sfMailer
+  param:
+    logging:           %SF_LOGGING_ENABLED%
+    charset:           %SF_CHARSET%
+    delivery_strategy: realtime
+    transport:
+      class: sfEmail_FileTransport
+      
+</code></pre>
+
+  * Access the emails management module with the default route:
+ 
+<pre><code>
+http://www.example.com/backend.php/sfEmail
+
+</code></pre>
+
+
+## TODO
