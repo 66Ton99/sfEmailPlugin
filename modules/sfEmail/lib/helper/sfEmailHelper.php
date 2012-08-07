@@ -10,7 +10,7 @@
  */
 
 /**
- * 
+ *
  *
  * @param string $path
  * @param string $name
@@ -20,8 +20,8 @@
 function link_to_file($path, $name = null, $arguments = array())
 {
   return link_to(($name === null ? $path : $name),
-  							 'sfEmail/showFile?filename=' . rawurlencode(str_replace(array('\\', '.'),
+  							 '@sfEmail_showFile?filename=' . rawurlencode(str_replace(array('\\', '.'),
                                                                          array('/', '%%'),
-                                                                         $path)), 
+                                                                         $path)),
                  $arguments);
 }

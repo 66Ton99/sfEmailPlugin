@@ -18,12 +18,12 @@ class sfEmailActions extends sfActions
    */
   public function preExecute()
   {
-//    $this->setLayout(false);
+    $this->setLayout(false);
   }
-  
+
   /**
    * List of emails
-   * 
+   *
    * @return void
    */
   public function executeIndex()
@@ -39,74 +39,55 @@ class sfEmailActions extends sfActions
     {
       sort($files);
       $this->files = $files;
-    }    
+    }
   }
 
   /**
-   * 
+   *
    *
    * @return bool
    */
   private function retrieveFile()
   {
-    if(!$filename = str_replace('%%', '.', $this->getRequestParameter('filename'))) {
+    if(!$this->filename = str_replace('%%', '.', $this->getRequestParameter('filename'))) {
       return false;
-    }    
-    $file = realpath(sfConfig::get('sf_root_dir') . sfConfig::get('sf_emailPlugin_path') . '/' . $filename);
+    }
+    $file = realpath(sfConfig::get('sf_root_dir') . sfConfig::get('sf_emailPlugin_path') . '/' . $this->filename);
     $this->logMessage($file, 'debug');
     if(!(0 === strpos($file, sfConfig::get('sf_root_dir')) && file_exists($file))) {
       return false;
     }
-    $this->filename = $filename;
-    $file = file_get_contents($file);
-    
-    if (empty($file)) return false;
-    
-    $line = '';
+
+    $this->message = new Zend_Mail_Message(array('file' => $file));
+
     $this->options = array(
-    	'type' => 'Content-type: ',
+    	'contentType' => 'Content-type: ',
     	'from' => 'From: ',
     	'to' => 'To: ',
     	'subject' => 'Subject: ',
     );
-    $i = 0;
-    $ins = 0;
-    foreach (explode("\n", $file) as $line) {
-      $i += strlen($line)+1;
-      foreach ($this->options as $key => $val) {
-        if (strtolower($val) == strtolower(substr($line, 0, strlen($val)))) {
-          $this->$key = substr($line, strlen($val));
-        }
-      }
-      if ('' == $line) {
-        $ins++;
-        if (1 == $ins) {
-          $file = substr($file, $i);
-          break;
-        }
-        continue;
-      }
-      $ins = 0;
+    foreach ($this->options as $key => $val) {
+      $this->$key = $this->message->$key;
     }
-    $type = explode(';', @$this->type);
-    switch (trim(@$type[0])) {
-      case 'text/html':
-        $this->output = quoted_printable_decode($file);
-        if (!empty($this->subject)) {
-          $this->subject = quoted_printable_decode($this->subject);
-        }
-        break;
-      
-      default:
-        $this->output = nl2br($file);
-        break;
+    $this->subject = quoted_printable_decode($this->subject);
+    $this->messages= array();
+    $this->types = array();
+    for ($i = 1; $i <= $this->message->countParts(); $i++) {
+      $part = $this->message->getPart($i);
+      $clearType = strtok($part->contentType, ';');
+      if ($clearType == $this->getRequestParameter('type', 'text/plain') ) {
+        $this->contentType = $part->contentType;
+        $this->messages[$part->contentType] = quoted_printable_decode($part->getContent());
+      } else {
+        $this->types[] = $clearType;
+      }
     }
-    $this->output = str_replace(array('<html>', '</html>', '<body', '</body>', '<head>', '</head>'), 
-                                array('', '', '<div', '</div>', '', ''),
-                                $this->output);
-    $this->output = base64_encode($this->output);
-//                                $this->output = 'asdgdsfgsdfg';
-//                                var_dump($this->output);
+
+    if ('text/html' == $this->getRequestParameter('type')) {
+      $this->content = array_pop($this->messages);
+      $this->setTemplate('content');
+    }
+
     return true;
   }
 

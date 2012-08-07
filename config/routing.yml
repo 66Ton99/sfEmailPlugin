@@ -1,0 +1,8 @@
+sfEmail:
+  url:   /sfEmail
+  param: { module: sfEmail, action: index }
+
+sfEmail_showFile:
+  url:   /sfEmail/showFile
+  param: { module: sfEmail, action: showFile }
+
