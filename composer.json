@@ -1,0 +1,26 @@
+{
+    "name": "sfEmailPlugin",
+    "type": "symfony1-plugin",
+    "description": "The sfEmailPlugin is a symfony 1.x plugin that allows to debug emails deliverability in development mode.",
+    "keywords": [
+        "email",
+        "test",
+        "debug"
+    ],
+    "homepage": "https://github.com/66Ton99/sfEmailPlugin",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Ton Sharp",
+            "email": "Forma-PRO@66ton99.org.ua"
+        },
+        {
+            "name": "Voznyak Nazar",
+            "email": "voznyaknazar@gmail.com"
+        }
+    ],
+    "require": {
+        "php": ">=5.2",
+        "composer/installers": "v1.0.0"
+    }
+}

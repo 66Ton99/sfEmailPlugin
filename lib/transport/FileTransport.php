@@ -17,7 +17,7 @@ require_once dirname(__FILE__) . '/Functions.php';
 /**
  * Sends Messages using the files.
  * 
- * @package    Swift
+ * @package    sfEmailPlugin
  * @subpackage Transport
  * @author     Chris Corbyn
  * @author     Ton Sharp <forma@66ton99.org.ua>

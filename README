@@ -71,7 +71,7 @@ mailer:
     charset:           %SF_CHARSET%
     delivery_strategy: realtime
     transport:
-      class: sfEmail_FileTransport
+      class: sfEmail_Transport_FileTransport # sfEmail_Transport_MemTransport # for unit tests
       
 </code></pre>
 
