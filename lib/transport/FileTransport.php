@@ -12,7 +12,7 @@
 //@require 'Swift/Transport/MailInvoker.php';
 //@require 'Swift/Mime/Message.php';
 //@require 'Swift/Events/EventListener.php';
-require_once dirname(__FILE__) . '/Functions.php';
+require_once dirname(__FILE__) . '/../Functions.php';
 
 /**
  * Sends Messages using the files.
