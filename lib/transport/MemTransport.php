@@ -1,7 +1,7 @@
 <?php 
 
 /**
- * Memory Swift maller transport for unit tests
+ * Memory Swift mailer transport for unit tests
  * 
  * @package    sfEmailPlugin
  * @subpackage Transport

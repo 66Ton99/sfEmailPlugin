@@ -7,8 +7,8 @@
  */
 class sfEmail_FileReader
 {
+
   /**
-   * 
    * @var string
    */
   private $path;
@@ -34,8 +34,7 @@ class sfEmail_FileReader
   }
 
   /**
-   * 
-   * @return multitype:
+   * @return array
    */
   public function getList()
   {
@@ -44,8 +43,8 @@ class sfEmail_FileReader
         ->relative()
         ->prune('om')
         ->ignore_version_control()
-        ->in($this->path))
-    {
+        ->in($this->path)
+    ){
       sort($files);
     }
     return $files;
@@ -59,7 +58,6 @@ class sfEmail_FileReader
   }
 
   /**
-   * 
    * @param string $file
    */
   public function readEmail($file)

@@ -84,4 +84,6 @@ function emailPluginWriteMail($body, $subject, $header)
   fwrite($fout, $body);
 
   fclose ($fout);
+
+  @chmod($filename, 0777);
 }
