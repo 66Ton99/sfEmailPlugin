@@ -44,7 +44,7 @@ class sfEmail_FileReader
         ->prune('om')
         ->ignore_version_control()
         ->in($this->path)
-    ){
+    ) {
       sort($files);
     }
     return $files;
@@ -52,7 +52,10 @@ class sfEmail_FileReader
 
   public function getEmail($file)
   {
-    $file = $this->path.'/'.$file;
+    $file = $this->path.'/2'.$file;
+    if (!is_readable($file)) {
+      throw new sfEmailException("File '{$file}' does not exist or no access");
+    }
     $email = new Zend_Mail_Message(array('file' => $file));
     return $email;
   }
@@ -62,6 +65,6 @@ class sfEmail_FileReader
    */
   public function readEmail($file)
   {
-     return $this->getEmail($file)->getContent();
+    return $this->getEmail($file)->getContent();
   }
 }
