@@ -52,7 +52,7 @@ class sfEmail_FileReader
 
   public function getEmail($file)
   {
-    $file = $this->path.'/2'.$file;
+    $file = $this->path . '/' . $file;
     if (!is_readable($file)) {
       throw new sfEmailException("File '{$file}' does not exist or no access");
     }
