@@ -51,14 +51,15 @@ function emailPluginInitialisation($configuration)
  */
 function emailPluginWriteMail($body, $subject, $header)
 {
-  $dir = sfConfig::get('sf_root_dir') . sfConfig::get('sf_emailPlugin_path');
+  $dir = sfConfig::get('sf_emailPlugin_path');
   if (!is_dir($dir)) {
-    $separator = substr(sfConfig::get('sf_emailPlugin_path'), 0, 1);
-    $path = sfConfig::get('sf_root_dir');
-    foreach (explode($separator, substr(sfConfig::get('sf_emailPlugin_path'), 1)) as $pathDir) {
+    $path = '';
+    foreach (explode(DIRECTORY_SEPARATOR, substr($dir, 1)) as $pathDir) {
       $path .= DIRECTORY_SEPARATOR . $pathDir;
-      @mkdir($path);
-      @chmod($path, 0777);
+      if (!is_dir($path)) {
+        @mkdir($path);
+        @chmod($path, 0777);
+      }
     }
   }
 

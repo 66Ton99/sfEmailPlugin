@@ -1,2 +1,2 @@
 all:
-  path: '/cache/mail'
+  path: "<?php echo ProjectConfiguration::guessRootDir(), '/cache/mail';?>"

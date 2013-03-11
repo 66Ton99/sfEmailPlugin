@@ -18,7 +18,7 @@ class sfEmail_FileReader
    */
   public function __construct()
   {
-    $this->path = realpath(sfConfig::get('sf_root_dir') . sfConfig::get('sf_emailPlugin_path'));
+    $this->path = sfConfig::get('sf_emailPlugin_path');
   }
 
   /**
